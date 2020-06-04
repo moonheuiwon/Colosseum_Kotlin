@@ -1,5 +1,6 @@
 package kr.co.tjoeun.colosseum_kotlin.datas;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,9 +75,9 @@ public class TopicReply {
             tr.replyCount = jsonObject.getInt("reply_count");
 
             if (!jsonObject.isNull("replies")) {
-                JSONObject replies = jsonObject.getJSONObject("replies");
+                JSONArray replies = jsonObject.getJSONArray("replies");
 
-                for (int i = 0; i < replies.length(); i ++) {
+                for (int i = 0; i < replies.length(); i++) {
                     JSONObject re_reply = replies.getJSONObject(i);
                     TopicReply reReply = TopicReply.getTopicReplyFromJson(re_reply);
                     tr.replyList.add(reReply);
