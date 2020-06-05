@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import androidx.annotation.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.tjoeun.colosseum_kotlin.R;
@@ -28,6 +30,8 @@ import kr.co.tjoeun.colosseum_kotlin.datas.TopicReply;
 import kr.co.tjoeun.colosseum_kotlin.utils.ServerUtil;
 
 public class NotificationAdapter extends ArrayAdapter<Notification> {
+
+
 
 
 
