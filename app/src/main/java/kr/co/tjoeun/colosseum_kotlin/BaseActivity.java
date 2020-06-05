@@ -63,6 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     startActivity(myIntent);
                 }
             });
+            setTitle("Colosseum");
         }
     }
 
