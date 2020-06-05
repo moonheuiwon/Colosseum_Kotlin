@@ -22,6 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public TextView activityTitleTxt;
     public ImageView notificationImg;
+    public ImageView logoImg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setTitle(CharSequence title) {
         super.setTitle(title);
 
+        activityTitleTxt.setVisibility(View.VISIBLE);
+        logoImg.setVisibility(View.GONE);
         activityTitleTxt.setText(title);
 
 
@@ -55,6 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             View customActionBar = getSupportActionBar().getCustomView();
             activityTitleTxt = getSupportActionBar().getCustomView().findViewById(R.id.activityTitleTxt);
             notificationImg = customActionBar.findViewById(R.id.notificationImg);
+            logoImg = customActionBar.findViewById(R.id.logoImg);
 
             notificationImg.setOnClickListener(new View.OnClickListener() {
                 @Override
