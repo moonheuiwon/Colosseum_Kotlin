@@ -1,6 +1,7 @@
 package kr.co.tjoeun.colosseum_kotlin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,17 +14,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.co.tjoeun.colosseum_kotlin.adapters.NotificationAdapter;
+import kr.co.tjoeun.colosseum_kotlin.databinding.ActivityNotificationListBinding;
 import kr.co.tjoeun.colosseum_kotlin.datas.Notification;
 import kr.co.tjoeun.colosseum_kotlin.utils.ServerUtil;
 
 public class NotificationListActivity extends BaseActivity {
 
+    ActivityNotificationListBinding binding;
+
     List<Notification> notificationList = new ArrayList<>();
+
+    NotificationAdapter myNotiAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification_list);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_notification_list);
         setupEvents();
         setValues();
     }
@@ -37,6 +44,8 @@ public class NotificationListActivity extends BaseActivity {
     public void setValues() {
         notificationImg.setVisibility(View.INVISIBLE);
 
+        myNotiAdapter = new NotificationAdapter(mContext, R.layout.notification_list_item, notificationList);
+        binding.notiListView.setAdapter(myNotiAdapter);
     }
 
     @Override
@@ -62,6 +71,13 @@ public class NotificationListActivity extends BaseActivity {
                         JSONObject notiObj = notis.getJSONObject(i);
                         notificationList.add(Notification.getNotiFromJson(notiObj));
                     }
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            myNotiAdapter.notifyDataSetChanged();
+                        }
+                    });
 
                 } catch (JSONException e) {
                     e.printStackTrace();
